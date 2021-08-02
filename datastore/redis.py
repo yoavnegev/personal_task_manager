@@ -6,7 +6,6 @@ TASK_ITEMS = "task_items"
 
 
 class RedisStore:
-    """IMPORTANT NOTE: This class is highly coupled with RedisStore. Make sure you modify both on change."""
 
     def __init__(self, host, port):
         self.redis = StrictRedis(host=host, port=port, db=0)

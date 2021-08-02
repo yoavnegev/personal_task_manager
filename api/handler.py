@@ -10,7 +10,7 @@ from datastore.models import TaskItem
 from datastore.redis import RedisStore
 
 
-class JobView(web.View):
+class TaskItemView(web.View):
 
     async def post(self) -> Response:
         task_item: TaskItem = await self._parse_request(self.request)
@@ -66,8 +66,8 @@ class JobView(web.View):
         if not await request.text():
             raise HTTPBadRequest(text='No request payload')
         try:
-            raw_job = await request.json()
+            raw_task = await request.json()
         except Exception as e:
             logging.error('payload is not a valid json', extra={'error': e.__class__.__name__, 'reason': e.args[0]})
             raise HTTPBadRequest(text='payload is not a valid json')
-        return TaskItem.from_dict(raw_job)
+        return TaskItem.from_dict(raw_task)
