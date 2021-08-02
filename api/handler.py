@@ -24,7 +24,7 @@ class TaskItemView(web.View):
         serialized_task = task_item.serialize()
         return web.json_response(serialized_task)
 
-    async def update(self) -> Response:
+    async def put(self) -> Response:
         redis = self.get_redis()
         task_item: TaskItem = await self._parse_request(self.request)
         await self._send_update_task_item(redis, task_item)
