@@ -9,7 +9,7 @@ class TaskItem:
     title: str
     above: float = None
     below: float = None
-    id: float = attr.ib() if not above and not below else random.uniform(10.5, 75.5)
+    id: float = attr.ib() if not above and not below else random.uniform(below, above)
 
     @id.default
     def _id_uuid(self):
